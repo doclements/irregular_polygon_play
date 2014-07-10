@@ -6,6 +6,10 @@ wkt_poly = '''POLYGON((-29.35546875 60.369873046875, -33.57421875 56.67846679687
 
 loaded_poly = wkt.loads(wkt_poly)
 
+from shapely.geometry import mapping
+import json
+open("buffer.geojson", "wb").write(json.dumps(mapping(loaded_poly)))
+
 wcs_envelope = loaded_poly.envelope
 
 print wcs_envelope
