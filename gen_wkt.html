@@ -45,6 +45,7 @@
                 hover: true,
                 onSelect: displayWKT
             };
+            polyOptions = {sides: 4000};
 
             drawControls = {
                 point: new OpenLayers.Control.DrawFeature(vectors,
@@ -53,7 +54,9 @@
                             OpenLayers.Handler.Path),
                 polygon: new OpenLayers.Control.DrawFeature(vectors,
                             OpenLayers.Handler.Polygon),
-                hover: new OpenLayers.Control.SelectFeature(vectors, options)
+                hover: new OpenLayers.Control.SelectFeature(vectors, options),
+                circle : new OpenLayers.Control.DrawFeature(vectors, OpenLayers.Handler.RegularPolygon,
+                    {handlerOptions: polyOptions})
             };
 
             for(var key in drawControls) {
@@ -147,6 +150,10 @@
             <li>
                 <input type="radio" name="type" value="polygon" id="polygonToggle" onclick="toggleControl(this);" />
                 <label for="polygonToggle">draw polygon</label>
+            </li>
+            <li>
+                <input type="radio" name="type" value="circle" id="circleToggle" onclick="toggleControl(this);" />
+                <label for="circleToggle">draw circle</label>
             </li>
             <li>
                 <input type="radio" name="type" value="hover" id="hoverToggle"
